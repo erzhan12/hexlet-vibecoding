@@ -68,6 +68,18 @@ export function calculateDailyCalories(
   }
 }
 
+// Норма воды: 30 мл на килограмм веса
+export function calculateDailyWater(weightKg: number): {
+  liters: number
+  glasses: number
+} {
+  const ml = weightKg * 30
+  return {
+    liters: Math.round(ml / 100) / 10,
+    glasses: Math.round(ml / 250),
+  }
+}
+
 export const LIMITS = {
   height: { min: 100, max: 250 },
   weight: { min: 30, max: 300 },

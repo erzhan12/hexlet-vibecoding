@@ -1,5 +1,5 @@
 import { useId, useState } from "react"
-import { Flame, Scale } from "lucide-react"
+import { Droplet, Flame, Scale } from "lucide-react"
 
 import {
   Card,
@@ -23,6 +23,7 @@ import {
   BMI_CATEGORIES,
   calculateBmi,
   calculateDailyCalories,
+  calculateDailyWater,
   getBmiCategory,
   LIMITS,
   validate,
@@ -52,6 +53,15 @@ const SCALE_SEGMENTS = [
 function toPercent(value: number) {
   const clamped = Math.min(Math.max(value, SCALE_MIN), SCALE_MAX)
   return ((clamped - SCALE_MIN) / (SCALE_MAX - SCALE_MIN)) * 100
+}
+
+// Склонение слова «стакан» по числу: 1 стакан, 2 стакана, 5 стаканов
+function glassesWord(count: number) {
+  const mod10 = count % 10
+  const mod100 = count % 100
+  if (mod10 === 1 && mod100 !== 11) return "стакан"
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return "стакана"
+  return "стаканов"
 }
 
 function parse(value: string) {
@@ -125,6 +135,7 @@ function App() {
         activity
       )
     : null
+  const water = !errors.weight ? calculateDailyWater(parse(weight)) : null
 
   return (
     <div className="mx-auto min-h-svh max-w-4xl px-4 py-8 sm:py-12">
@@ -133,7 +144,7 @@ function App() {
           Калькулятор <span className="text-primary">калорий</span>
         </h1>
         <p className="text-muted-foreground mt-2">
-          Индекс массы тела и дневная норма калорий
+          Индекс массы тела, дневная норма калорий и воды
         </p>
       </header>
 
@@ -314,6 +325,35 @@ function App() {
               ) : (
                 <p className="text-muted-foreground">
                   Заполните все поля, чтобы увидеть норму калорий.
+                </p>
+              )}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Droplet className="text-primary size-5" />
+                Вода в день
+              </CardTitle>
+              <CardDescription>30 мл на каждый килограмм веса</CardDescription>
+            </CardHeader>
+            <CardContent>
+              {water !== null ? (
+                <div className="grid gap-1">
+                  <p>
+                    <span className="text-5xl font-bold tabular-nums">
+                      {water.liters.toFixed(1)}
+                    </span>{" "}
+                    <span className="text-muted-foreground">л</span>
+                  </p>
+                  <p className="text-muted-foreground text-sm">
+                    ≈ {water.glasses} {glassesWord(water.glasses)} по 250 мл
+                  </p>
+                </div>
+              ) : (
+                <p className="text-muted-foreground">
+                  Укажите вес, чтобы увидеть норму воды.
                 </p>
               )}
             </CardContent>
