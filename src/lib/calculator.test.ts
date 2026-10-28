@@ -4,6 +4,7 @@ import {
   calculateBmi,
   calculateBmr,
   calculateDailyCalories,
+  calculateDailyWater,
   getBmiCategory,
   LIMITS,
   validate,
@@ -42,6 +43,13 @@ describe("calculateDailyCalories", () => {
     expect(result.maintain).toBe(2003) // 1668.75 * 1.2 = 2002.5
     expect(result.lose).toBe(1702)
     expect(result.gain).toBe(2303)
+  })
+})
+
+describe("calculateDailyWater", () => {
+  it("считает 30 мл на килограмм веса", () => {
+    expect(calculateDailyWater(72)).toEqual({ liters: 2.2, glasses: 9 })
+    expect(calculateDailyWater(50)).toEqual({ liters: 1.5, glasses: 6 })
   })
 })
 
