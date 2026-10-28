@@ -5,6 +5,8 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Сайт на GitHub Pages живёт по адресу /hexlet-vibecoding/
+  base: '/hexlet-vibecoding/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

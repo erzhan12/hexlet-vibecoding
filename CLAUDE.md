@@ -25,3 +25,7 @@
 - `npm test` — тесты формул.
 - `npm run build` — собрать сайт.
 - `npm run lint` — проверить код.
+
+## Публикация
+- Сайт: https://erzhan12.github.io/hexlet-vibecoding/
+- Публикуется автоматически при каждом изменении в `main` (`.github/workflows/deploy.yml`).
