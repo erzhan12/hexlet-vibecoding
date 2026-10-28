@@ -13,3 +13,15 @@
 
 ## Как проверять
 - Для роста 175 и веса 72 индекс массы тела около 23.5, категория «норма».
+
+## Как устроен проект
+- React + TypeScript + Vite, стили на Tailwind, компоненты shadcn лежат в `src/components/ui`.
+- Формулы и проверка ввода — `src/lib/calculator.ts`, тесты к ним — `src/lib/calculator.test.ts`.
+- Страница целиком — `src/App.tsx`, цвета темы — `src/index.css`.
+
+## Команды
+- `npm install` — установить зависимости.
+- `npm run dev` — запустить сайт локально.
+- `npm test` — тесты формул.
+- `npm run build` — собрать сайт.
+- `npm run lint` — проверить код.
