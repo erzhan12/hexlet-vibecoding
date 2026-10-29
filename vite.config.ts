@@ -8,6 +8,15 @@ export default defineConfig({
   // Сайт на GitHub Pages живёт по адресу /hexlet-vibecoding/
   base: '/hexlet-vibecoding/',
   plugins: [react(), tailwindcss()],
+  // Две страницы: калькулятор (главная) и визитка (/card/)
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        card: path.resolve(__dirname, 'card/index.html'),
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

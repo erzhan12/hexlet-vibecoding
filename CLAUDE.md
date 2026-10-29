@@ -19,6 +19,7 @@
 - React + TypeScript + Vite, стили на Tailwind, компоненты shadcn лежат в `src/components/ui`.
 - Формулы и проверка ввода — `src/lib/calculator.ts`, тесты к ним — `src/lib/calculator.test.ts`.
 - Страница целиком — `src/App.tsx`, цвета темы — `src/index.css`.
+- Учебная страница-визитка: `card/index.html` и `src/card/CardPage.tsx`, открывается по адресу `/card/`. Обе страницы перечислены в `vite.config.ts`.
 
 ## Команды
 - `npm install` — установить зависимости.
@@ -29,4 +30,5 @@
 
 ## Публикация
 - Сайт: https://erzhan12.github.io/hexlet-vibecoding/
+- Визитка: https://erzhan12.github.io/hexlet-vibecoding/card/
 - Публикуется автоматически при каждом изменении в `main` (`.github/workflows/deploy.yml`).
